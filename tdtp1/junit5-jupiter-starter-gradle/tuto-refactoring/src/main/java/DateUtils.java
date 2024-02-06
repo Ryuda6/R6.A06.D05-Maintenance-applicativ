@@ -7,13 +7,13 @@ public class DateUtils {
                 date.isBefore(endingDate);
     }
 
-    public static boolean isDateBetween(LocalDate date, LocalDate endingDate, LocalDate startingDate) {
+    public static boolean isDateBetween(LocalDate date, LocalDate endingDate, LocalDate startingDate, boolean inclusive) {
         return date.isAfter(startingDate) &&
                 date.isBefore(endingDate);
     }
 
     public static boolean isDateOutside(LocalDate date, LocalDate startingDate,
                                         LocalDate endingDate) {
-        return !isDateBetween(date, startingDate, endingDate);
+        return !isDateBetween(date, startingDate, endingDate, true);
     }
 }

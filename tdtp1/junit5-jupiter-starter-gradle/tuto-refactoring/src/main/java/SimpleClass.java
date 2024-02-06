@@ -15,7 +15,6 @@ public class SimpleClass {
         return a + b;
     }
 
-
 }
 
 

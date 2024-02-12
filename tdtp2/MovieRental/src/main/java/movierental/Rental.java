@@ -5,19 +5,48 @@ package movierental;
  */
 public class Rental {
 
-    private Movie _movie;
-    private int _daysRented;
+    private Movie movie;
+    private int daysRented;
 
     public Rental(Movie movie, int daysRented) {
-        _movie = movie;
-        _daysRented = daysRented;
+        this.movie = movie;
+        this.daysRented = daysRented;
+    }
+
+    int frequentRenterPoints() {
+        return 1 + addBonusForATwoDaysNewReleaseRental();
+    }
+
+    int addBonusForATwoDaysNewReleaseRental() {
+        if ((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1)
+            return 1;
+        return 0;
+    }
+
+    double determineAmounts() {
+
+        switch (getMovie().getPriceCode()) {
+
+            case Movie.NEW_RELEASE:
+                return getDaysRented() * 3;
+            case Movie.CHILDRENS:
+                double thisAmount = 1.5;
+                if (getDaysRented() > 3)
+                    thisAmount += (getDaysRented() - 3) * 1.5;
+                return thisAmount;
+        }
+
+        if (getMovie().getMoviePriceCode() == MoviePriceCode.REGULAR) {
+            getMovie().getMoviePriceCode().getComputeAmount().apply(getDaysRented());
+        }
+        return 0;
     }
 
     public int getDaysRented() {
-        return _daysRented;
+        return daysRented;
     }
 
     public Movie getMovie() {
-        return _movie;
+        return movie;
     }
 }

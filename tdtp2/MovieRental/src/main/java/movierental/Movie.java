@@ -4,26 +4,34 @@ public class Movie {
 
     public static final int CHILDRENS = 2;
     public static final int NEW_RELEASE = 1;
-    public static final int REGULAR = 0;
+    private MoviePriceCode moviePriceCode;
 
-    private String _title;
-    private int _priceCode;
+    private String title;
+    private int priceCode;
 
     public Movie(String title, int priceCode) {
-        _title = title;
-        _priceCode = priceCode;
+        this.title = title;
+        this.priceCode = priceCode;
+    }
+
+    public Movie(String title, MoviePriceCode moviePriceCode) {
+        this.title = title;
+        this.moviePriceCode = moviePriceCode;
     }
 
     public int getPriceCode() {
-        return _priceCode;
+        return priceCode;
     }
 
     public void setPriceCode(int arg) {
-        _priceCode = arg;
+        priceCode = arg;
     }
     public String getTitle() {
-        return _title;
+        return title;
     }
 
 
+    public MoviePriceCode getMoviePriceCode() {
+        return this.moviePriceCode;
+    }
 }
